@@ -8,7 +8,7 @@
 
 body {
   background-color: transparent;
-  color: #000;
+  color: #fff;
   position: relative;
   font-family: "Figtree", sans-serif;
   overflow: hidden;
@@ -27,4 +27,5 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  mix-blend-mode: difference;
 }

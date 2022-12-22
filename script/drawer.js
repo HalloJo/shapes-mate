@@ -68,7 +68,7 @@ animate();
 // CREATE SHAPE
 
 const createShape = (x, y) => {
-  const geometry = new ConeGeometry(10, 15, 32);
+  const geometry = new ConeGeometry(10, 30, 32);
   const emissiveColor = new Color("hsl(" + hue + ", 88%, 35%)");
 
   const material = new MeshLambertMaterial({
