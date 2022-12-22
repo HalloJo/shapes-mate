@@ -56,7 +56,7 @@ animate();
 
 // CREATE SHAPE
 
-const createShape = () => {
+const createShape = (x, y) => {
   const geometry = new THREE.ConeGeometry(10, 15, 32);
   const material = new THREE.MeshLambertMaterial({
     color: 0x87a1f7,
@@ -64,7 +64,11 @@ const createShape = () => {
   });
   const shape = new THREE.Mesh(geometry, material);
 
-  shape.position.set(0, 0, 0);
+  shape.position.set(
+    window.innerWidth / 2 - x,
+    window.innerHeight / 2 - y,
+    400
+  );
   shape.rotateX(0.5);
   shape.rotateZ(0.5);
 
@@ -72,4 +76,6 @@ const createShape = () => {
   scene.add(shape);
 };
 
-createShape();
+document.addEventListener("mousemove", (event) => {
+  createShape(event.pageX, event.pageY);
+});
