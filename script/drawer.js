@@ -33,6 +33,8 @@ camera.lookAt(scene.position);
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
 
+light.position.set(0, 0, -1);
+
 scene.add(light);
 
 // SHAPE DATA
@@ -62,6 +64,7 @@ const createShape = () => {
   });
   const shape = new THREE.Mesh(geometry, material);
 
+  shape.position.set(0, 0, 0);
   shape.rotateX(0.5);
   shape.rotateZ(0.5);
 
