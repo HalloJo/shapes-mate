@@ -5,6 +5,7 @@ const {
   ConeGeometry,
   MeshLambertMaterial,
   Mesh,
+  Color,
 } = THREE;
 const DOMRENDERER = document.querySelector("section");
 
@@ -44,6 +45,9 @@ light.position.set(0, 0, -1);
 
 scene.add(light);
 
+// HUE COLOR SETUP
+let hue = 0;
+
 // SHAPE DATA
 
 const shapes = [];
@@ -65,22 +69,26 @@ animate();
 
 const createShape = (x, y) => {
   const geometry = new ConeGeometry(10, 15, 32);
+  const emissiveColor = new Color("hsl(" + hue + ", 88%, 35%)");
+
   const material = new MeshLambertMaterial({
     color: 0x87a1f7,
-    emissive: 0x0b2fa8,
+    emissive: emissiveColor,
   });
   const shape = new Mesh(geometry, material);
 
   shape.position.set(
     window.innerWidth / 2 - x,
     window.innerHeight / 2 - y,
-    500
+    550
   );
   shape.rotateX(0.5);
   shape.rotateZ(0.5);
 
   shapes.push(shape);
   scene.add(shape);
+
+  hue = hue + 1;
 };
 
 // EVENT LISTENERS DESKTOP
