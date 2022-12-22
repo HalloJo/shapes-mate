@@ -9,7 +9,7 @@ const renderer = new WebGLRenderer({
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setClearColor(0x333333, 1);
+renderer.setClearColor(0x222222, 1);
 
 DOMRENDERER.appendChild(renderer.domElement);
 
@@ -29,11 +29,25 @@ const camera = new PerspectiveCamera(
 camera.position.z = -50;
 camera.lookAt(scene.position);
 
+// LIGHTING
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+
+scene.add(light);
+
+// SHAPE DATA
+
+const shapes = [];
+
 // ANIMATION
 
 const animate = () => {
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
+
+  shapes.forEach((shape) => {
+    shape.rotateX(0.01);
+  });
 };
 
 animate();
@@ -42,9 +56,17 @@ animate();
 
 const createShape = () => {
   const geometry = new THREE.ConeGeometry(10, 15, 32);
-  const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-  const cone = new THREE.Mesh(geometry, material);
-  scene.add(cone);
+  const material = new THREE.MeshLambertMaterial({
+    color: 0x87a1f7,
+    emissive: 0x0b2fa8,
+  });
+  const shape = new THREE.Mesh(geometry, material);
+
+  shape.rotateX(0.5);
+  shape.rotateZ(0.5);
+
+  shapes.push(shape);
+  scene.add(shape);
 };
 
 createShape();
