@@ -62,6 +62,8 @@ const animate = () => {
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
 
+  camera.position.setZ(camera.position.z + 1);
+
   shapes.forEach((shape) => {
     shape.rotateX(0.01);
   });
@@ -75,7 +77,6 @@ const createShape = (x, y) => {
   const geometries = [
     new ConeGeometry(10, 30, 32),
     new BoxGeometry(15, 15, 15),
-    new DodecahedronGeometry(20, 0),
     new TorusGeometry(5, 3, 16, 100),
     new SphereGeometry(5, 32, 32),
   ];
@@ -94,7 +95,7 @@ const createShape = (x, y) => {
   shape.position.set(
     window.innerWidth / 2 - x,
     window.innerHeight / 2 - y,
-    550
+    camera.position.z + 500
   );
   shape.rotateX(0.5);
   shape.rotateZ(0.5);
