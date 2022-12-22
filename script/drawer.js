@@ -37,3 +37,14 @@ const animate = () => {
 };
 
 animate();
+
+// CREATE SHAPE
+
+const createShape = () => {
+  const geometry = new THREE.ConeGeometry(10, 15, 32);
+  const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+  const cone = new THREE.Mesh(geometry, material);
+  scene.add(cone);
+};
+
+createShape();
