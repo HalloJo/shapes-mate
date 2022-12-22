@@ -6,6 +6,10 @@ const {
   MeshLambertMaterial,
   Mesh,
   Color,
+  DodecahedronGeometry,
+  BoxGeometry,
+  TorusGeometry,
+  SphereGeometry,
 } = THREE;
 const DOMRENDERER = document.querySelector("section");
 
@@ -68,7 +72,17 @@ animate();
 // CREATE SHAPE
 
 const createShape = (x, y) => {
-  const geometry = new ConeGeometry(10, 30, 32);
+  const geometries = [
+    new ConeGeometry(10, 30, 32),
+    new BoxGeometry(15, 15, 15),
+    new DodecahedronGeometry(20, 0),
+    new TorusGeometry(5, 3, 16, 100),
+    new SphereGeometry(5, 32, 32),
+  ];
+
+  const randomNumber = Math.floor(Math.random() * geometries.length);
+
+  const geometry = geometries[randomNumber];
   const emissiveColor = new Color("hsl(" + hue + ", 88%, 35%)");
 
   const material = new MeshLambertMaterial({
