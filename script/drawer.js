@@ -1,4 +1,11 @@
-const { Scene, PerspectiveCamera, WebGLRenderer } = THREE;
+const {
+  Scene,
+  PerspectiveCamera,
+  WebGLRenderer,
+  ConeGeometry,
+  MeshLambertMaterial,
+  Mesh,
+} = THREE;
 const DOMRENDERER = document.querySelector("section");
 
 // WEBGL RENDERER
@@ -57,17 +64,17 @@ animate();
 // CREATE SHAPE
 
 const createShape = (x, y) => {
-  const geometry = new THREE.ConeGeometry(10, 15, 32);
-  const material = new THREE.MeshLambertMaterial({
+  const geometry = new ConeGeometry(10, 15, 32);
+  const material = new MeshLambertMaterial({
     color: 0x87a1f7,
     emissive: 0x0b2fa8,
   });
-  const shape = new THREE.Mesh(geometry, material);
+  const shape = new Mesh(geometry, material);
 
   shape.position.set(
     window.innerWidth / 2 - x,
     window.innerHeight / 2 - y,
-    400
+    500
   );
   shape.rotateX(0.5);
   shape.rotateZ(0.5);
@@ -76,6 +83,20 @@ const createShape = (x, y) => {
   scene.add(shape);
 };
 
+// EVENT LISTENERS DESKTOP
+
+let isMouseDown = false;
+
 document.addEventListener("mousemove", (event) => {
-  createShape(event.pageX, event.pageY);
+  if (isMouseDown) {
+    createShape(event.pageX, event.pageY);
+  }
+});
+
+document.addEventListener("mousedown", () => {
+  isMouseDown = true;
+});
+
+document.addEventListener("mouseup", () => {
+  isMouseDown = false;
 });
