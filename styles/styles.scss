@@ -6,19 +6,16 @@
   box-sizing: border-box;
 }
 
+html {
+  position: fixed;
+}
+
 body {
   background-color: transparent;
   color: #fff;
-  position: relative;
+  position: fixed;
   font-family: "Figtree", sans-serif;
-  overflow: hidden;
-}
-
-h1 {
-  font-size: 80px;
-  text-align: center;
-  line-height: 1;
-  font-weight: 900;
+  overscroll-behavior-y: contain;
 }
 
 .text {
@@ -27,5 +24,22 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  mix-blend-mode: difference;
+  text-align: center;
+
+  h1 {
+    font-size: 80px;
+    text-align: center;
+    line-height: 1;
+    font-weight: 900;
+    mix-blend-mode: difference;
+  }
+
+  p {
+    margin: 20px 0 0 0;
+    color: #666;
+  }
+}
+
+canvas {
+  vertical-align: bottom;
 }

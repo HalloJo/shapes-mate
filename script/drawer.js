@@ -123,3 +123,23 @@ document.addEventListener("mousedown", () => {
 document.addEventListener("mouseup", () => {
   isMouseDown = false;
 });
+
+document.addEventListener("touchmove", (event) => {
+  if (isMouseDown) {
+    createShape(event.pageX, event.pageY);
+  }
+});
+
+document.addEventListener("touchstart", () => {
+  isMouseDown = true;
+});
+
+document.addEventListener("touchend", () => {
+  isMouseDown = false;
+});
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
